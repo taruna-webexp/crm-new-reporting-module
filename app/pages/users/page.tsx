@@ -68,16 +68,7 @@ const Users = () => {
           setSearchQuery(e.target.value);
         }}
       />
-      <div className="text-end  mt-4">
-        <Button
-          variant="contained"
-          className="mt-4"
-          color="primary"
-          onClick={() => router.push("/pages/users/edit-user/1/dashboard")}
-        >
-          Dashboard
-        </Button>
-      </div>
+
       <DataTable
         data={products}
         loading={loading}
@@ -88,6 +79,7 @@ const Users = () => {
         showActions={true}
         setPage={setPage}
         length={10}
+        onView={row => router.push(`/pages/users/edit-user/${row.id}/dashboard`)}
         onEdit={row => {
           console.log("Edit", row);
           handleEdit(row);

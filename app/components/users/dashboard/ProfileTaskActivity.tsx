@@ -2,6 +2,8 @@ import React from "react";
 import { CardController } from "../../controllers";
 import DataTable from "../../Table";
 import { dashboardData } from "../../dummydata/DummyData";
+import { Heading } from "../../typography";
+import { CircleUserRound, User } from "lucide-react";
 // ────────────────────────────────────────────────────────────────
 type DashboardData = typeof dashboardData;
 type Task = DashboardData["tasks"][number];
@@ -20,7 +22,13 @@ export default function ProfileTaskActivity({
       {" "}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3 space-y-6">
-          <CardController title="Profile" className="p-6">
+          <CardController className="p-6">
+            <Heading
+              level="h3"
+              headingText="Profile"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="space-y-4">
                 <div>
@@ -44,9 +52,8 @@ export default function ProfileTaskActivity({
                 <div className="flex items-center gap-3">
                   <p className="text-sm text-gray-500 font-medium">Reporting Manager</p>
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white shadow" />
-                    <span className="font-medium text-gray-900">
-                      {dashboardData.metadata.user.reportingManager}
+                    <span className="font-medium text-gray-900 flex gap-2">
+                      <CircleUserRound /> {dashboardData.metadata.user.reportingManager}
                     </span>
                   </div>
                 </div>
@@ -88,7 +95,13 @@ export default function ProfileTaskActivity({
             </div>
           </CardController>
 
-          <CardController title=" Tasks in progress">
+          <CardController>
+            <Heading
+              level="h3"
+              headingText="Tasks in progress"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
             <DataTable
               data={tasksInProgress}
               loading={false}
@@ -148,11 +161,17 @@ export default function ProfileTaskActivity({
         </div>
 
         <div className="space-y-6">
-          <CardController title="Activity Feed">
-            <div className="space-y-5">
+          <CardController>
+            <Heading
+              level="h3"
+              headingText="Activity Feed"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+            <div className="space-y-5 mt-4">
               {dashboardData.activityFeed.map((item, i) => (
                 <div key={i} className="flex gap-3">
-                  <div className="w-9 h-9 bg-gray-300 rounded-full flex-shrink-0" />
+                  {/* <div className="w-9 h-9 bg-gray-300 rounded-full flex-shrink-0" /> */}
                   <div>
                     <p className="text-sm text-gray-900">
                       <span className="font-medium">{item.user}</span> {item.action}{" "}
@@ -171,8 +190,14 @@ export default function ProfileTaskActivity({
             </div>
           </CardController>
 
-          <CardController title="Recent Time Entries">
-            <div className="space-y-4">
+          <CardController>
+            <Heading
+              level="h3"
+              headingText="Recent Time Entries"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+            <div className="space-y-4 mt-4">
               {dashboardData.timeEntries.map((e, i) => (
                 <div key={i}>
                   <p className="text-sm font-medium text-gray-900">{e.taskTitle}</p>

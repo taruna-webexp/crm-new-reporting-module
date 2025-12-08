@@ -3,6 +3,7 @@ import React from "react";
 import { CardController } from "@/app/components/controllers";
 import { CheckCircle2, Clock, CalendarCheck, TrendingUp, AlertCircle } from "lucide-react";
 import { dashboardData } from "@/app/components/dummydata/DummyData";
+import { Heading } from "../../typography";
 
 type Task = (typeof dashboardData.tasks)[number];
 
@@ -43,7 +44,13 @@ export default function StatsCards({ filteredTasks }: StatsCardsProps) {
             <CheckCircle2 className="w-5 h-5 text-green-600" />
           </div>
           <div>
-            <p className="text-sm text-gray-600 font-medium">Tasks Completed</p>
+            <Heading
+              level="h4"
+              headingText=" Tasks Completed"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <p className="text-xs text-gray-500">Completed today</p>
           </div>
         </div>
@@ -57,7 +64,13 @@ export default function StatsCards({ filteredTasks }: StatsCardsProps) {
             <Clock className="w-5 h-5 text-blue-600" />
           </div>
           <div>
-            <p className="text-sm text-gray-600 font-medium">Avg. Time per Task</p>
+            <Heading
+              level="h4"
+              headingText=" Avg. Time per Task"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <p className="text-xs text-gray-500">Average duration</p>
           </div>
         </div>
@@ -71,7 +84,13 @@ export default function StatsCards({ filteredTasks }: StatsCardsProps) {
             <CalendarCheck className="w-5 h-5 text-emerald-600" />
           </div>
           <div>
-            <p className="text-sm text-gray-600 font-medium">On-time Completion</p>
+            <Heading
+              level="h4"
+              headingText="On-time Completion"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <p className="text-xs text-gray-500">Tasks delivered on time</p>
           </div>
         </div>
@@ -85,7 +104,13 @@ export default function StatsCards({ filteredTasks }: StatsCardsProps) {
             <TrendingUp className="w-5 h-5 text-indigo-600" />
           </div>
           <div>
-            <p className="text-sm text-gray-600 font-medium">Productivity Score</p>
+            <Heading
+              level="h4"
+              headingText="Productivity Score"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <p className="text-xs text-gray-500">Overall performance</p>
           </div>
         </div>
@@ -99,7 +124,13 @@ export default function StatsCards({ filteredTasks }: StatsCardsProps) {
             <AlertCircle className="w-5 h-5 text-red-600" />
           </div>
           <div>
-            <p className="text-sm text-red-700 font-medium">Tasks Overdue</p>
+            <Heading
+              level="h4"
+              headingText="Tasks Overdue"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <p className="text-xs text-red-600">Requires attention</p>
           </div>
         </div>

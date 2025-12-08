@@ -23,6 +23,7 @@ import ProductivityQuickAction from "@/app/components/users/dashboard/Productivi
 import RecentTasksSection from "@/app/components/users/dashboard/RecentTasksSection";
 import ProfileTaskActivity from "@/app/components/users/dashboard/ProfileTaskActivity";
 import ActiveProjectsWithChart from "@/app/components/users/dashboard/ActiveProjectsWithChart";
+import { Heading } from "@/app/components/typography";
 
 type FormValues = {
   dateRange: {
@@ -194,10 +195,22 @@ export default function ProductivityDashboard() {
               <StatsCards filteredTasks={filteredTasks} />
 
               {/* Period Comparison - Static for now */}
-              <CardController title="Period Comparison" className="py-4">
+              <CardController className="py-4">
+                <Heading
+                  level="h3"
+                  headingText=" Period Comparison"
+                  color="black"
+                  className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gray-50 rounded-xl p-5">
-                    <h3 className="text-sm font-medium text-gray-700 mb-3">Tasks Completed</h3>
+                    <Heading
+                      level="h5"
+                      headingText="Tasks Completed"
+                      color="black"
+                      className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+                    />
+
                     <p className="text-2xl font-bold text-gray-900">{stats.tasksCompleted}</p>
                     <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -210,7 +223,12 @@ export default function ProductivityDashboard() {
                     </p>
                   </div>
                   <div className="bg-gray-50 rounded-xl p-5">
-                    <h3 className="text-sm font-medium text-gray-700 mb-3">Avg. Time per Task</h3>
+                    <Heading
+                      level="h5"
+                      headingText="Avg. Time per Task"
+                      color="black"
+                      className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+                    />
                     <p className="text-2xl font-bold text-gray-900">{stats.avgTimePerTask}</p>
                     <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -227,7 +245,7 @@ export default function ProductivityDashboard() {
             </div>
 
             {/* Productivity Score Trend */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
               <ProductivityQuickAction filteredProductivityTrend={filteredProductivityTrend} />
             </div>
 

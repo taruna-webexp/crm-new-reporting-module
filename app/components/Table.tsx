@@ -1,22 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "./controllers/Table";
-import {
-  Paper,
-  Pagination,
-  CircularProgress,
-  IconButton,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "./controllers/Table";
+import { Paper, Pagination, CircularProgress, IconButton, Menu, MenuItem } from "@mui/material";
 import { MoreVert as MoreIcon } from "@mui/icons-material";
 import { EditIcon, DeleteIcon } from "./icons";
 
@@ -39,7 +25,10 @@ interface DataTableProps<T> {
 
   showActions?: boolean;
   actionsPosition?: "first" | "last";
+  onView?: (row: T) => void;
+
   onEdit?: (row: T) => void;
+
   onDelete?: (row: T) => void;
 }
 
@@ -54,6 +43,7 @@ export default function DataTable<T>({
   className,
   showActions = false,
   actionsPosition = "last",
+  onView,
   onEdit,
   onDelete,
 }: DataTableProps<T>) {
@@ -73,15 +63,22 @@ export default function DataTable<T>({
 
   const ActionDropdown = (row: T) => (
     <>
-      <IconButton
-        size="small"
-        onClick={(e) => handleOpenMenu(e, row)}
-        aria-label="Actions"
-      >
+      <IconButton size="small" onClick={e => handleOpenMenu(e, row)} aria-label="Actions">
         <MoreIcon />
       </IconButton>
 
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
+        {onView && (
+          <MenuItem
+            onClick={() => {
+              onView(selectedRow as T);
+              handleCloseMenu();
+            }}
+          >
+            👁️ View
+          </MenuItem>
+        )}
+
         {onEdit && (
           <MenuItem
             onClick={() => {
@@ -93,6 +90,7 @@ export default function DataTable<T>({
             Edit
           </MenuItem>
         )}
+
         {onDelete && (
           <MenuItem
             onClick={() => {
@@ -117,7 +115,7 @@ export default function DataTable<T>({
               <TableHead style={{ width: 80 }}>Actions</TableHead>
             )}
 
-            {columns.map((col) => (
+            {columns.map(col => (
               <TableHead key={String(col.key)} style={{ width: col.width }}>
                 {col.label}
               </TableHead>
@@ -132,7 +130,10 @@ export default function DataTable<T>({
         <TableBody>
           {loading && (
             <TableRow>
-              <TableCell colSpan={columns.length + (showActions ? 1 : 0)} className="text-center py-4">
+              <TableCell
+                colSpan={columns.length + (showActions ? 1 : 0)}
+                className="text-center py-4"
+              >
                 <CircularProgress size={24} />
               </TableCell>
             </TableRow>
@@ -140,7 +141,10 @@ export default function DataTable<T>({
 
           {!loading && data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={columns.length + (showActions ? 1 : 0)} className="text-center py-3">
+              <TableCell
+                colSpan={columns.length + (showActions ? 1 : 0)}
+                className="text-center py-3"
+              >
                 No results found
               </TableCell>
             </TableRow>
@@ -153,19 +157,15 @@ export default function DataTable<T>({
                   <TableCell>{ActionDropdown(row)}</TableCell>
                 )}
 
-                {columns.map((col) => (
+                {columns.map(col => (
                   <TableCell key={String(col.key)}>
-                    {col.render ? (
-                      col.render(row)
-                    ) : (
-                      (row as any)[col.key] instanceof Array && col.key === "techStack" ? (
-                        (row as any)[col.key]
-                          .map((tech: { label: string }) => tech.label) // Explicitly type 'tech'
-                          .join(", ")
-                      ) : (
-                        (row as any)[col.key] ?? "-"
-                      )
-                    )}
+                    {col.render
+                      ? col.render(row)
+                      : (row as any)[col.key] instanceof Array && col.key === "techStack"
+                        ? (row as any)[col.key]
+                            .map((tech: { label: string }) => tech.label) // Explicitly type 'tech'
+                            .join(", ")
+                        : ((row as any)[col.key] ?? "-")}
                   </TableCell>
                 ))}
 
@@ -175,8 +175,6 @@ export default function DataTable<T>({
               </TableRow>
             ))}
         </TableBody>
-
-
       </Table>
 
       {pageCount > 1 && setPage && (

@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { dashboardData } from "../../dummydata/DummyData";
 import { Button } from "@mui/material";
+import { Heading } from "../../typography";
 
 type ProductivityScoreItem = (typeof dashboardData.productivityScoreTrend)[number];
 
@@ -26,10 +27,25 @@ export default function ProductivityQuickAction({
       {" "}
       <div className="lg:col-span-2 space-y-6">
         <CardController className="py-4">
-          <div className="bg-white rounded-xl shadow-sm p-6 border-2 border-purple-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-              My Productivity Score Trend
-            </h2>
+          <div className="bg-white rounded-xl shadow-sm p-6 border-2 border-purple-200 mt-4">
+            <div className="flex items-center justify-between">
+              <Heading
+                level="h3"
+                headingText="My Productivity Score Trend"
+                color="black"
+                className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+              />
+
+              <Button
+                type="submit"
+                variant="contained"
+                size="medium"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 shadow-sm"
+              >
+                Log Hours
+              </Button>
+            </div>
+
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={filteredProductivityTrend}>
@@ -64,7 +80,7 @@ export default function ProductivityQuickAction({
         </CardController>
       </div>
       {/* Quick Actions */}
-      <CardController className="py-4">
+      {/* <CardController className="py-4">
         <div className="space-y-6">
           <div className="bg-white rounded-xl shadow-sm p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-5">Quick Actions</h2>
@@ -87,7 +103,7 @@ export default function ProductivityQuickAction({
             </div>
           </div>
         </div>
-      </CardController>
+      </CardController> */}
     </>
   );
 }

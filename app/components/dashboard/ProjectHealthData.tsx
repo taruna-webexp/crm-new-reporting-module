@@ -21,7 +21,7 @@ export default function ProjectHealthData({ projectHealthData }: ProjectHealthDa
           {/* Header */}
           <div className=" pt-8 pb-6 ">
             <Heading
-              level="h2"
+              level="h3"
               headingText=" Project Health "
               color="black"
               className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"

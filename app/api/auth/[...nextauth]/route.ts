@@ -13,11 +13,8 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials) => {
-        if (
-          credentials?.email === "test@gmail.com" &&
-          credentials?.password === "123456"
-        ) {
+      authorize: async credentials => {
+        if (credentials?.email === "test@gmail.com" && credentials?.password === "123456") {
           return { id: "1", name: "Shivam", email: "test@gmail.com" };
         }
         return null;

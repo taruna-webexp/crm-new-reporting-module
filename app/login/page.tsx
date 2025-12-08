@@ -18,7 +18,6 @@ export default function Login() {
         email,
         password,
       });
-      
 
       if (result?.error) {
         console.error("Login failed:", result.error);
@@ -31,8 +30,7 @@ export default function Login() {
         console.warn("Session not found after login");
         return;
       }
-      router.push("/pages/inputs")
-
+      router.push("/");
     } catch (error) {
       console.error("Unexpected login error:", error);
     }
@@ -44,16 +42,14 @@ export default function Login() {
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm space-y-4"
       >
-        <h2 className="text-xl font-semibold text-center text-neutral-700">
-          Login
-        </h2>
+        <h2 className="text-xl font-semibold text-center text-neutral-700">Login</h2>
 
         <input
           type="email"
           placeholder="Email"
           required
           className="border rounded-lg w-full px-3 py-2"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
         />
 
         <input
@@ -61,7 +57,7 @@ export default function Login() {
           placeholder="Password"
           required
           className="border rounded-lg w-full px-3 py-2"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
         />
 
         <button

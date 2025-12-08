@@ -28,7 +28,7 @@ export default function DashboardFilter({ methods, onClear }: DashboardFilterPro
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+    <div className="flex flex-col lg:flex-row lg:items-center gap-8 my-4">
       <div className="flex items-center gap-4 min-w-0">
         <Calendar className="h-5 w-5 text-gray-600 flex-shrink-0" />
         <DateRangeController name="dateRange" label="Date Range" className="w-full max-w-md" />

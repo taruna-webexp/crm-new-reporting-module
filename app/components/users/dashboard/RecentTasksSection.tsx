@@ -1,6 +1,7 @@
 import React from "react";
 import { CardController } from "../../controllers";
 import { dashboardData } from "../../dummydata/DummyData";
+import { Heading } from "../../typography";
 
 type Task = (typeof dashboardData.tasks)[number];
 
@@ -14,7 +15,12 @@ export default function RecentTasksSection({ recentTasks }: RecentTasksSectionPr
     <>
       <CardController className="py-4">
         <div className="bg-white rounded-xl shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">My Recent Tasks</h2>
+          <Heading
+            level="h3"
+            headingText="My Recent Tasks"
+            color="black"
+            className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+          />
           <div className="space-y-8">
             {recentTasks.map(task => {
               const progress = task.estimate > 0 ? (task.spent / task.estimate) * 100 : 0;

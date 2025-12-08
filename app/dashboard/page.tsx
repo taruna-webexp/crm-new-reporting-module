@@ -110,7 +110,13 @@ export default function Dashboard() {
 
             <main className="flex-1 overflow-y-auto p-6">
               {/* Filter — onSubmit pass kar rahe hain */}{" "}
-              <CardController title="Global Filters" className="mb-10">
+              <CardController className="mb-10">
+                <Heading
+                  level="h3"
+                  headingText="Global Filters"
+                  color="black"
+                  className="text-xl font-bold mb-10"
+                />
                 <DashboardFilter methods={methods} onClear={onClear} />
               </CardController>
               {/* Ab saara data filteredData se aayega */}

@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { CardController, SelectController } from "../../controllers";
 import { dashboardData } from "@/app/components/dummydata/DummyData";
+import { Heading } from "../../typography";
 
 type DashboardData = typeof dashboardData;
 
@@ -59,7 +60,13 @@ export default function ActiveProjectsWithChart({
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-10">
         <div className="lg:col-span-3 space-y-6">
           <CardController>
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">Active Projects</h2>
+            <Heading
+              level="h3"
+              headingText="Active Projects"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
             <div className="space-y-6">
               {activeProjects.map(proj => (
                 <div
@@ -95,8 +102,14 @@ export default function ActiveProjectsWithChart({
         <div className="space-y-6">
           {/* Stuck vs Allocated Hours */}
           <CardController>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Stuck vs Allocated Hours</h2>
-            <div className="h-64">
+            <Heading
+              level="h3"
+              headingText="Stuck vs Allocated Hours"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
+            <div className="h-64 mt-2">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={filteredStuckVsAllocated}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -123,9 +136,13 @@ export default function ActiveProjectsWithChart({
           {/* Stuck Hours Trend */}
           <CardController>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
-                Stuck Hours Trend (Last 30 Days)
-              </h2>
+              <Heading
+                level="h3"
+                headingText=" Stuck Hours Trend (Last 30 Days)"
+                color="black"
+                className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+              />
+
               <SelectController
                 name="projectFilter"
                 label=""
@@ -134,7 +151,7 @@ export default function ActiveProjectsWithChart({
                 className="w-48"
               />
             </div>
-            <div className="flex items-center gap-3 text-xs text-gray-600 mb-4">
+            <div className="flex items-center gap-3 text-xs text-gray-600 my-4 ">
               <span>
                 {appliedFilters.dateRange.startDate} - {appliedFilters.dateRange.endDate}
               </span>

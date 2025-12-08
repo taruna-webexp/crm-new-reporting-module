@@ -1,6 +1,7 @@
 import { Briefcase, CheckCircle, Clock, Users } from "lucide-react";
 import React from "react";
 import { CardController } from "../controllers";
+import { Heading } from "../typography";
 
 type DummyData = {
   totalActiveProjects: number;
@@ -20,9 +21,14 @@ type KeyMetricsProps = {
 export default function KeyMetrics({ dummyData }: KeyMetricsProps) {
   return (
     <>
-      <h2 className="text-xl font-semibold text-gray-800 mb-6">Key Metrics</h2>
+      <Heading
+        level="h3"
+        headingText=" Key Metrics"
+        color="black"
+        className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 mt-2">
         <CardController title="Total Active Projects" subtitle="Number of ongoing projects">
           <div className="flex items-center justify-between">
             <Briefcase className="h-12 w-12 text-purple-600" />
