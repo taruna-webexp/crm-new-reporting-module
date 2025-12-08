@@ -1,0 +1,10 @@
+export { default as AddIcon } from './AddIcon';
+export { default as DeleteIcon } from './DeleteIcon';
+export { default as EditIcon } from './EditIcon';
+export { default as SearchIcon } from './SearchIcon';
+export {default as DashIcon} from './Dashboard';
+export { default as UserIcon } from './User';
+export { default as LeftArrowIcon } from './LeftArrow';
+export { default as RightArrowIcon } from './RightArrow';
+export { default as SettingIcon } from './Settings';
+export { default as CopyIcon } from './Copy';
