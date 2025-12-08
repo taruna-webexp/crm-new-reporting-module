@@ -25,8 +25,8 @@ export interface SidebarProps {
 // ============================================
 // Card Controller
 // ============================================
-export interface CardControllerProps extends Omit<UIBaseFieldProps, "value" | "onChange"> {
-  name?: string | undefined;
+export interface CardControllerProps extends Omit<UIBaseFieldProps, "value" | "onChange" | "name"> {
+  name?: string;
   title?: string;
   subtitle?: string;
   children?: ReactNode;

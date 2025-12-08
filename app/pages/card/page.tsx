@@ -8,11 +8,7 @@ import {
   CardController,
 } from "../../components/controllers";
 import { Heading, Button } from "../../components/typography";
-import {
-  requiredTextSchema,
-  selectSchema,
-  dateSchema,
-} from "../../utils/validationSchemas";
+import { requiredTextSchema, selectSchema, dateSchema } from "../../utils/validationSchemas";
 import { fetchProducts } from "../../utils/api/product";
 import { UIOption } from "../../types/ui";
 
@@ -81,13 +77,11 @@ export default function Card() {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        className="pt-6"
-      >
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="pt-6">
         <Heading level="h2" className="mb-4" headingText="CardController Demo" />
 
         <CardController
+          name=""
           title="User Information Card"
           subtitle="Update your profile details below"
           footer={
@@ -104,7 +98,7 @@ export default function Card() {
             className="mb-4"
             validationSchema={requiredTextSchema("Full Name", 1, 50)}
             validateOn="blur"
-            onValidation={(error) => setValidationErrors((p) => ({ ...p, name: error }))}
+            onValidation={error => setValidationErrors(p => ({ ...p, name: error }))}
             error={!!validationErrors.name}
             helperText={validationErrors.name}
           />
@@ -115,21 +109,9 @@ export default function Card() {
             options={selectOptions}
             validationSchema={selectSchema("Department")}
             validateOn="change"
-            onValidation={(error) => setValidationErrors((p) => ({ ...p, pick: error }))}
+            onValidation={error => setValidationErrors(p => ({ ...p, pick: error }))}
             error={!!validationErrors.pick}
             helperText={validationErrors.pick}
-          />
-
-          <DateTimeController
-            name="date"
-            label="Start Date"
-            type="date"
-            className="mt-4"
-            validationSchema={dateSchema}
-            validateOn="blur"
-            onValidation={(error) => setValidationErrors((p) => ({ ...p, date: error }))}
-            error={!!validationErrors.date}
-            helperText={validationErrors.date}
           />
         </CardController>
       </form>
