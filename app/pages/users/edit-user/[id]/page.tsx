@@ -9,6 +9,7 @@ import { UIOption } from "@/app/types/ui";
 import { useRouter } from "next/navigation";
 import { userDepartmentSchema, userRoleSchema } from "@/app/utils/users/usersSchema";
 import { formSchema, FormValues } from "@/app/utils/validationSchemas";
+import { useNotify } from "@/app/utils/notify";
 
 // Helper function to fetch options
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
@@ -21,7 +22,7 @@ export default function EditUser() {
   const [selectDepartmentOptions, setSelectDepartmentOptions] =
     useState<UIOption[]>(userDepartmentSchema);
   const router = useRouter();
-
+  const notify = useNotify();
   useEffect(() => {
     const stored = localStorage.getItem("selectedUser");
     if (stored) {
@@ -50,8 +51,13 @@ export default function EditUser() {
 
   const onSubmit = (data: FormValues) => {
     console.log("User data updated:", data);
-    alert("User updated successfully!");
+
     localStorage.removeItem("selectedUser");
+    notify.success({
+      title: "Success",
+      message: "User updated successfully!",
+    });
+
     router.push("/pages/users");
   };
 

@@ -58,6 +58,47 @@ export default function ActiveProjectsWithChart({
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-10">
+        <div className="lg:col-span-3 space-y-6">
+          <CardController>
+            <Heading
+              level="h3"
+              headingText="Active Projects"
+              color="black"
+              className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
+            />
+
+            <div className="space-y-6">
+              {activeProjects.map(proj => (
+                <div
+                  key={proj.projectId}
+                  className="border-b border-gray-100 last:border-0 pb-6 last:pb-0"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-base font-medium text-gray-900">{proj.name}</h3>
+                    <span className="text-xs px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
+                      {proj.lead}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3">Assigned Tasks: {proj.tasks}</p>
+                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                    <span>
+                      {proj.spent} / {proj.allocated} hrs
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      className="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full transition-all"
+                      style={{
+                        width: `${(proj.spent / proj.allocated) * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardController>
+        </div>
+
         <div className="space-y-6">
           {/* Stuck vs Allocated Hours */}
           <CardController>

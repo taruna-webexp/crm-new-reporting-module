@@ -28,20 +28,20 @@ export default function ProjectHealthData({ projectHealthData }: ProjectHealthDa
             />
             <p className="text-gray-600 mt-2 text-lg">Real-time health of all active projects</p>
           </div>
-          {/* <div className="grid grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl  text-center">
-                      <p className="text-4xl font-black">8</p>
-                      <p className="text-green-100">Healthy Projects</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white rounded-2xl  text-center">
-                      <p className="text-4xl font-black">4</p>
-                      <p className="text-yellow-100">At Risk</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-red-500 to-rose-600 text-white rounded-2xl  text-center">
-                      <p className="text-4xl font-black">2</p>
-                      <p className="text-red-100">Critical</p>
-                    </div>
-                  </div> */}
+          <div className="grid grid-cols-3 gap-6">
+            <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl  text-center">
+              <p className="text-4xl font-black">8</p>
+              <p className="text-green-100">Healthy Projects</p>
+            </div>
+            <div className="bg-gradient-to-br from-yellow-500 to-orange-500 text-white rounded-2xl  text-center">
+              <p className="text-4xl font-black">4</p>
+              <p className="text-yellow-100">At Risk</p>
+            </div>
+            <div className="bg-gradient-to-br from-red-500 to-rose-600 text-white rounded-2xl  text-center">
+              <p className="text-4xl font-black">2</p>
+              <p className="text-red-100">Critical</p>
+            </div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 px-8 pb-8">
             {/* LEFT: Big Donut Chart with Average Health */}
             <div className="flex flex-col items-center justify-center">

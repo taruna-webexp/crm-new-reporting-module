@@ -108,7 +108,7 @@ export default function Dashboard() {
               </div>
             </header>
 
-            <main className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-6">
               {/* Filter — onSubmit pass kar rahe hain */}{" "}
               <CardController className="mb-10">
                 <Heading
@@ -228,7 +228,7 @@ export default function Dashboard() {
                 />
               </CardController>
               <DelayedTaskTable data={filteredData.delayedTasksSummary} />
-            </main>
+            </div>
           </div>
         </div>
       </form>

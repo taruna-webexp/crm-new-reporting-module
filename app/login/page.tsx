@@ -3,11 +3,13 @@
 import { signIn, getSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useNotify } from "../utils/notify";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const notify = useNotify();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,19 +22,34 @@ export default function Login() {
       });
 
       if (result?.error) {
-        console.error("Login failed:", result.error);
-        alert(result.error);
+        notify.error({
+          title: "Login Failed",
+          message: result.error || "Invalid email or password",
+        });
         return;
       }
-      const session = await getSession();
 
+      const session = await getSession();
       if (!session) {
-        console.warn("Session not found after login");
+        notify.error({
+          title: "Session Error",
+          message: "Unable to retrieve session after login.",
+        });
         return;
       }
+
+      notify.success({
+        title: "Login Successful",
+        message: "Welcome back!",
+      });
+
       router.push("/");
     } catch (error) {
       console.error("Unexpected login error:", error);
+      notify.error({
+        title: "Error",
+        message: "Something went wrong. Please try again.",
+      });
     }
   }
 

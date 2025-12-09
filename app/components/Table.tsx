@@ -5,7 +5,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from ".
 import { Paper, Pagination, CircularProgress, IconButton, Menu, MenuItem } from "@mui/material";
 import { MoreVert as MoreIcon } from "@mui/icons-material";
 import { EditIcon, DeleteIcon } from "./icons";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
 export interface Column<T> {
   key: keyof T | string;
   label: string;
@@ -75,7 +75,7 @@ export default function DataTable<T>({
               handleCloseMenu();
             }}
           >
-            👁️ View
+            <VisibilityIcon style={{ fontSize: 18 }} className="mr-2" /> View
           </MenuItem>
         )}
 

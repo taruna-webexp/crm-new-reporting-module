@@ -15,6 +15,7 @@ import {
   moduleProjectsTypeSchema,
   moduleStatusSchema,
 } from "@/app/utils/module/moduleSchema";
+import { useNotify } from "@/app/utils/notify";
 
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
   return schema.filter(option => option.label.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -23,6 +24,7 @@ const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UI
 export default function EditModule() {
   const [moduleData, setModuleData] = useState<ModuleFormValues | null>(null);
   const router = useRouter();
+  const notify = useNotify();
 
   useEffect(() => {
     const storedProject = localStorage.getItem("selectedModule");
@@ -51,7 +53,11 @@ export default function EditModule() {
 
   const onSubmit = (data: ModuleFormValues) => {
     console.log("Updated Module:", data);
-    alert("Module updated successfully!");
+    notify.success({
+      title: "Module Updated",
+      message: "Module updated successfully!",
+    });
+
     localStorage.removeItem("selecteModule");
     router.push("/pages/module");
   };

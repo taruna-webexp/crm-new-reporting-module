@@ -9,6 +9,7 @@ import { InputController, SelectController } from "@/app/components/controllers"
 import { Button, Heading } from "@/app/components/typography";
 import { getTaskById, updateTask } from "@/app/lib/task-store";
 import { TaskFormValues } from "@/app/types/task";
+import { useNotify } from "@/app/utils/notify";
 
 export default function EditTaskPage() {
   const router = useRouter();
@@ -71,9 +72,16 @@ export default function EditTaskPage() {
     }
   }, [tlEstimate, allowDeveloperEstimate, setValue]);
 
+  const notify = useNotify();
+
   const onSubmit = (data: TaskFormValues) => {
     updateTask(id as string, data);
-    alert("Task updated successfully!");
+
+    notify.success({
+      title: "Task Updated",
+      message: "Task updated successfully!",
+    });
+
     router.push("/pages/task");
   };
 

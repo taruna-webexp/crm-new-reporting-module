@@ -16,6 +16,7 @@ import {
 import { projectsValidationSchema } from "@/app/components/form-validations/projectsValidation";
 import { ProjectsFormValues } from "@/app/types/projects";
 import { useRouter } from "next/navigation";
+import { useNotify } from "@/app/utils/notify";
 
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
   return schema.filter(option => option.label.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -52,10 +53,21 @@ export default function EditProject() {
     }
   }, [projectData, reset]);
 
+  const notify = useNotify();
+
   const onSubmit = (data: ProjectsFormValues) => {
     console.log("Updated project:", data);
-    alert("Project updated successfully!");
+
+    // Success notification
+    notify.success({
+      title: "Project Updated",
+      message: "Project updated successfully!",
+    });
+
+    // Remove selected project from localStorage
     localStorage.removeItem("selectedProject");
+
+    // Redirect to projects page
     router.push("/pages/projects");
   };
 

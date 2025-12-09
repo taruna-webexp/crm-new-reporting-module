@@ -17,6 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import type { HeaderProps } from "../types/components";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useNotify } from "../utils/notify";
 
 const Header: React.FC<HeaderProps> = ({ title = "Dashboard", onToggleSidebar }) => {
   const [search, setSearch] = useState("");
@@ -31,12 +32,19 @@ const Header: React.FC<HeaderProps> = ({ title = "Dashboard", onToggleSidebar })
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
+  const notify = useNotify();
 
   const handleLogout = () => {
     handleCloseMenu();
-    signOut();
+
+    notify.success({
+      title: "Logged Out",
+      message: "You have been successfully logged out.",
+    });
+
+    signOut({ redirect: false });
+
     router.push("/login");
-    // Add your logout logic here
   };
 
   return (

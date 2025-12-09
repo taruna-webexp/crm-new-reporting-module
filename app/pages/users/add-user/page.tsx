@@ -8,10 +8,12 @@ import { formSchema, FormValues } from "@/app/utils/validationSchemas";
 import { UIOption } from "@/app/types/ui";
 import { userRoleSchema } from "@/app/utils/users/usersSchema";
 import { useRouter } from "next/navigation";
+import { useNotify } from "@/app/utils/notify";
 
 export default function AddUser() {
   const [selectOptions, setSelectOptions] = useState<UIOption[]>(userRoleSchema);
   const router = useRouter();
+  const notify = useNotify();
   const methods = useForm<FormValues>({
     // resolver: yupResolver(formSchema),
     mode: "onChange",
@@ -29,7 +31,12 @@ export default function AddUser() {
 
   const onSubmit = (data: FormValues) => {
     console.log("Form submitted:", data);
-    alert("Form submitted successfully!");
+
+    notify.success({
+      title: "Success",
+      message: "User add successfully!",
+    });
+
     router.push("/pages/users");
   };
 

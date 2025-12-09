@@ -25,7 +25,7 @@ export default function ProfileTaskActivity({
           <CardController className="p-6">
             <Heading
               level="h3"
-              headingText="Profile"
+              headingText="Profile6"
               color="black"
               className="text-4xl font-extrabold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent"
             />

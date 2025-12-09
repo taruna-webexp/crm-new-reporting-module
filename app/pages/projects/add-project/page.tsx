@@ -13,6 +13,7 @@ import {
 import { ProjectsFormValues } from "@/app/types/projects";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useNotify } from "@/app/utils/notify";
 
 // In-memory dummy storage (will reset on page refresh)
 const dummyProjects: ProjectsFormValues[] = [
@@ -63,22 +64,26 @@ export default function AddProject() {
 
   const { handleSubmit, reset } = methods;
 
+  const notify = useNotify();
+
   const onSubmit = (data: ProjectsFormValues) => {
     const newProject = {
       ...data,
-      id: String(Date.now()), // simple unique ID
+      id: String(Date.now()), // unique ID
     };
 
-    // Add to dummy array
+    // Add new project to state
     setProjects(prev => [...prev, newProject]);
 
-    // Show success
-    alert("Project created successfully!");
-    router.push("/pages/projects");
-    console.log("All Projects:", [...projects, newProject]);
-    console.log("New Project:", newProject);
+    // Success message
+    notify.success({
+      title: "Project Created",
+      message: "Project has been successfully added!",
+    });
 
-    // Reset form
+    // Redirect
+    router.push("/pages/projects");
+
     reset();
   };
 

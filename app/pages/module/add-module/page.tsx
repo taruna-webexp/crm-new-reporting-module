@@ -12,12 +12,15 @@ import {
   moduleProjectsTypeSchema,
   moduleStatusSchema,
 } from "@/app/utils/module/moduleSchema";
+import { useNotify } from "@/app/utils/notify";
+import { useRouter } from "next/navigation";
 
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
   return schema.filter(option => option.label.toLowerCase().includes(searchQuery.toLowerCase()));
 };
 
 export default function AddModule() {
+  const router = useRouter();
   const methods = useForm({
     //  resolver: yupResolver(moduleValidationSchema),
     mode: "onChange",
@@ -29,11 +32,17 @@ export default function AddModule() {
       status: "",
     },
   });
+  const notify = useNotify();
 
   const { handleSubmit } = methods;
 
   const onSubmit = (data: ModuleFormValues) => {
-    console.log("Form submitted:", data);
+    notify.success({
+      title: "Module Added",
+      message: "Module has been created successfully!",
+    });
+
+    router.push("/pages/modules");
   };
 
   return (

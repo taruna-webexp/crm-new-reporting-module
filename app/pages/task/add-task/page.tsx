@@ -8,6 +8,7 @@ import { Button, Heading } from "@/app/components/typography";
 import { addTask } from "@/app/lib/task-store";
 import { TaskFormValues } from "@/app/types/task";
 import { useEffect } from "react";
+import { useNotify } from "@/app/utils/notify";
 
 export default function AddTask() {
   const router = useRouter();
@@ -48,9 +49,19 @@ export default function AddTask() {
     }
   }, [tlEstimate, allowDeveloperEstimate, methods]);
 
+  const notify = useNotify();
+
   const onSubmit = (data: TaskFormValues) => {
+    // Add new task
     addTask(data as any);
-    alert("Task created successfully!");
+
+    // Success message
+    notify.success({
+      title: "Task Created",
+      message: "Task created successfully!",
+    });
+
+    // Redirect back to task list
     router.push("/pages/task");
   };
 

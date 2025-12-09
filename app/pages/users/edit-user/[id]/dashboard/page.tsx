@@ -245,7 +245,7 @@ export default function ProductivityDashboard() {
             </div>
 
             {/* Productivity Score Trend */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
               <ProductivityQuickAction filteredProductivityTrend={filteredProductivityTrend} />
             </div>
 
