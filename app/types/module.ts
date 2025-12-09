@@ -1,16 +1,18 @@
 export type ModuleFormValues = {
   projectName: string;
-  moduleName: string;
+  projectType?: string;
   authType: string;
   priority: string;
+  moduleName?: string;
   status: string;
 };
 
 export interface ModuleTableData {
-  id: number;
+  id?: string | number;
   projectName: string;
-  moduleName: string;
-  authType: string;
-  priority: string;
-  status: string;
+  moduleName?: string;
+  authType?: string;
+  priority?: string;
+  status?: string;
+  projectType?: string;
 }

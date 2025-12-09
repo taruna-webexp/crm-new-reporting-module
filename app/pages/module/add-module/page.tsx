@@ -1,26 +1,25 @@
 "use client";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  InputController,
-  SelectController,
-} from "@/app/components/controllers";
+import { InputController, SelectController } from "@/app/components/controllers";
 import { Button, Heading } from "@/app/components/typography";
 import { UIOption } from "@/app/types/ui";
 import { moduleValidationSchema } from "@/app/components/form-validations/moduleValidation";
 import { ModuleFormValues } from "@/app/types/module";
-import { moduleAuthSchema, modulePrioritySchema, moduleProjectsTypeSchema, moduleStatusSchema } from "@/app/utils/module/moduleSchema";
+import {
+  moduleAuthSchema,
+  modulePrioritySchema,
+  moduleProjectsTypeSchema,
+  moduleStatusSchema,
+} from "@/app/utils/module/moduleSchema";
 
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
-  return schema.filter((option) =>
-    option.label.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  return schema.filter(option => option.label.toLowerCase().includes(searchQuery.toLowerCase()));
 };
 
 export default function AddModule() {
-
   const methods = useForm({
-    resolver: yupResolver(moduleValidationSchema),
+    //  resolver: yupResolver(moduleValidationSchema),
     mode: "onChange",
     defaultValues: {
       projectName: "",
@@ -40,24 +39,18 @@ export default function AddModule() {
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg shadow-sm border border-neutral-200 w-full gap-0">
       <FormProvider {...methods}>
-        <Heading
-          level="h1"
-          className="mb-6"
-          color="primary"
-          headingText="Create New Module"
-        />
+        <Heading level="h1" className="mb-6" color="primary" headingText="Create New Module" />
 
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-6 w-full gap-0 flex flex-wrap mt-4"
         >
-
           <SelectController
             name="projectType"
             label="Project Type"
             className="w-full"
             options={moduleProjectsTypeSchema}
-            fetchOptions={(searchQuery) => fetchOptions(moduleProjectsTypeSchema, searchQuery)}
+            fetchOptions={searchQuery => fetchOptions(moduleProjectsTypeSchema, searchQuery)}
           />
 
           <InputController name="projectName" label="Enter Module Name" className="w-full" />
@@ -67,7 +60,7 @@ export default function AddModule() {
             label="Authentication Description"
             className="w-full"
             options={moduleAuthSchema}
-            fetchOptions={(searchQuery) => fetchOptions(moduleAuthSchema, searchQuery)}
+            fetchOptions={searchQuery => fetchOptions(moduleAuthSchema, searchQuery)}
           />
 
           <SelectController
@@ -75,7 +68,7 @@ export default function AddModule() {
             label="Priority"
             className="w-full"
             options={modulePrioritySchema}
-            fetchOptions={(searchQuery) => fetchOptions(modulePrioritySchema, searchQuery)}
+            fetchOptions={searchQuery => fetchOptions(modulePrioritySchema, searchQuery)}
           />
 
           <SelectController
@@ -83,7 +76,7 @@ export default function AddModule() {
             label="Status"
             className="w-full"
             options={moduleStatusSchema}
-            fetchOptions={(searchQuery) => fetchOptions(moduleStatusSchema, searchQuery)}
+            fetchOptions={searchQuery => fetchOptions(moduleStatusSchema, searchQuery)}
           />
           <div className="pt-4 flex gap-4 w-full">
             <Button buttonText="Submit" variant="primary" type="submit" />

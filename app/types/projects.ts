@@ -1,13 +1,18 @@
 export type ProjectsFormValues = {
-  projectName: string;
-  projectCode: string;
-  projectType: string;
-  clientName: string;
-  projectCategory: string;
-  projectOwner: string;
-  techStack: (string | undefined)[];
-  startDate: string;
-  endDate: string;
+  id?: string;
+  projectName?: string;
+  projectCode?: string;
+  projectType?: string;
+  clientName?: string;
+  projectCategory?: string;
+  projectOwner?: string;
+  techStack?: (string | undefined)[];
+  startDate?: string;
+  endDate?: string;
+  owner?: string;
+  billingModel?: string;
+  description?: string;
+  status?: string;
 };
 
 interface TechStack {
@@ -16,14 +21,15 @@ interface TechStack {
 }
 
 export interface ProjectsTableData {
-  id: number;
+  id: string;
   projectName: string;
   projectCode: string;
   projectType: string;
   clientName: string;
   projectCategory: string;
   projectOwner: string;
-  techStack: TechStack[];
+  techStack: string[];
+  owner: string;
   startDate: string;
   endDate: string;
   billingModel: string;

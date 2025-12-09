@@ -27,7 +27,7 @@ const Modules = () => {
     setLoading(true);
     try {
       const filtered = moduleData.filter(module =>
-        module.projectName.toLowerCase().includes(searchQuery.toLowerCase())
+        module.projectName.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       setProducts(filtered);
       setTotal(filtered.length);
@@ -42,7 +42,7 @@ const Modules = () => {
   };
 
   const confirmDelete = () => {
-    setProducts((prevState) => prevState.filter((module) => module.id !== selectedModule?.id));
+    setProducts(prevState => prevState.filter(module => module.id !== selectedModule?.id));
     setOpenModal(false);
   };
 
@@ -63,7 +63,7 @@ const Modules = () => {
         fullWidth
         size="small"
         value={searchQuery}
-        onChange={(e) => {
+        onChange={e => {
           setPage(1);
           setSearchQuery(e.target.value);
         }}
@@ -79,11 +79,11 @@ const Modules = () => {
         showActions={true}
         setPage={setPage}
         length={10}
-        onEdit={(row) => {
+        onEdit={row => {
           console.log("Edit", row);
-          handleEdit(row)
+          handleEdit(row);
         }}
-        onDelete={(row) => handleDelete(row)}
+        onDelete={row => handleDelete(row)}
       />
 
       <ConfirmationModal

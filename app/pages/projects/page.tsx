@@ -27,7 +27,7 @@ const Projects = () => {
     setLoading(true);
     try {
       const filtered = projectsData.filter(project =>
-        project.projectName.toLowerCase().includes(searchQuery.toLowerCase())
+        project.projectName.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       setProducts(filtered);
       setTotal(filtered.length);
@@ -42,7 +42,7 @@ const Projects = () => {
   };
 
   const confirmDelete = () => {
-    setProducts((prevState) => prevState.filter((project) => project.id !== selectedProject?.id));
+    setProducts(prevState => prevState.filter(project => project.id !== selectedProject?.id));
     setOpenModal(false);
   };
 
@@ -63,7 +63,7 @@ const Projects = () => {
         fullWidth
         size="small"
         value={searchQuery}
-        onChange={(e) => {
+        onChange={e => {
           setPage(1);
           setSearchQuery(e.target.value);
         }}
@@ -79,11 +79,11 @@ const Projects = () => {
         showActions={true}
         setPage={setPage}
         length={10}
-        onEdit={(row) => {
+        onEdit={row => {
           console.log("Edit", row);
-          handleEdit(row)
+          handleEdit(row);
         }}
-        onDelete={(row) => handleDelete(row)}
+        onDelete={row => handleDelete(row)}
       />
 
       <ConfirmationModal

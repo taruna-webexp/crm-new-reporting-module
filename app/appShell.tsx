@@ -17,7 +17,7 @@ const AppShell = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className=" flex flex-col bg-gray-50">
       <Header onToggleSidebar={() => setOpen(!open)} />
 
       <div className="flex">
