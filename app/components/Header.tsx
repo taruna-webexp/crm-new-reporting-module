@@ -36,15 +36,9 @@ const Header: React.FC<HeaderProps> = ({ title = "Dashboard", onToggleSidebar })
 
   const handleLogout = () => {
     handleCloseMenu();
-
-    notify.success({
-      title: "Logged Out",
-      message: "You have been successfully logged out.",
-    });
-
-    signOut({ redirect: false });
-
+    signOut();
     router.push("/login");
+    // Add your logout logic here
   };
 
   return (
