@@ -220,7 +220,7 @@ body {
 }
 
 main {
-  max-height: 79.8vh;
+  /* max-height: 79.8vh; */
   min-height: 79.8vh;
   overflow-y: scroll;
 }
