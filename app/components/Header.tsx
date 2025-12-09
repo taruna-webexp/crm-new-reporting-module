@@ -93,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ title = "Dashboard", onToggleSidebar })
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
             <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
 
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
           </Menu>
         </Box>
       </Toolbar>

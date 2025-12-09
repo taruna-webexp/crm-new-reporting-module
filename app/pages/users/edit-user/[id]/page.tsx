@@ -12,15 +12,14 @@ import { formSchema, FormValues } from "@/app/utils/validationSchemas";
 
 // Helper function to fetch options
 const fetchOptions = async (schema: UIOption[], searchQuery: string): Promise<UIOption[]> => {
-  return schema.filter((option) =>
-    option.label.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  return schema.filter(option => option.label.toLowerCase().includes(searchQuery.toLowerCase()));
 };
 
 export default function EditUser() {
   const [userData, setUserData] = useState<FormValues | null>(null);
   const [selectOptions, setSelectOptions] = useState<UIOption[]>(userRoleSchema);
-  const [selectDepartmentOptions, setSelectDepartmentOptions] = useState<UIOption[]>(userDepartmentSchema);
+  const [selectDepartmentOptions, setSelectDepartmentOptions] =
+    useState<UIOption[]>(userDepartmentSchema);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,12 +28,12 @@ export default function EditUser() {
       const parsed = JSON.parse(stored);
       setUserData(parsed);
     } else {
-      router.push("/users"); 
+      router.push("/users");
     }
   }, [router]);
 
   const methods = useForm<FormValues>({
-    resolver: yupResolver(formSchema),
+    // resolver: yupResolver(formSchema),
     mode: "onChange",
     defaultValues: userData || {},
   });
@@ -53,10 +52,10 @@ export default function EditUser() {
     console.log("User data updated:", data);
     alert("User updated successfully!");
     localStorage.removeItem("selectedUser");
-    router.push("/users");
+    router.push("/pages/users");
   };
 
-  console.log("userData", userData)
+  console.log("userData", userData);
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-4">
@@ -70,9 +69,14 @@ export default function EditUser() {
           >
             <InputController name="name" label="Full Name" className="w-1/3 px-2" />
             <InputController name="email" label="Email" type="email" className="w-1/3 px-2" />
-            <InputController name="password" label="Password" type="password" className="w-1/3 px-2" />
+            <InputController
+              name="password"
+              label="Password"
+              type="password"
+              className="w-1/3 px-2"
+            />
             <InputController name="phone" label="Phone No." type="tel" className="w-1/3 px-2" />
-            
+
             <SelectController
               name="department"
               label="Department"
@@ -86,7 +90,7 @@ export default function EditUser() {
               className="w-1/3 px-2"
               options={selectOptions}
             />
-            
+
             <InputController name="slackId" label="Slack Id" type="number" className="w-1/3 px-2" />
             <InputController name="file" label="Choose File" type="file" className="w-1/3 px-2" />
 

@@ -12,8 +12,8 @@ export const userStatusSchema: UIOption[] = [
 ];
 
 export const userDepartmentSchema: UIOption[] = [
-  { value: "department1", label: "Department 1" },
-  { value: "department2", label: "Department 2" },
-  { value: "department3", label: "Department 3" },
-  { value: "department4", label: "Department 4" },
+  { value: "Department 1", label: "Department 1" },
+  { value: "Department 2", label: "Department 2" },
+  { value: "Department 3", label: "Department 3" },
+  { value: "Department 4", label: "Department 4" },
 ];
